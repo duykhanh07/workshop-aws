@@ -5,111 +5,92 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+# AI Career Coach   
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
+### 1. Executive Summary  
+The AI Career Coach platform is designed for job seekers and fresh graduates to optimize the application process and enhance job opportunities. The system operates as an intelligent virtual assistant, supporting from building profiles (CV), writing cover letters to interview practice. The platform leverages the power of AWS Serverless to ensure automatic scalability and Amazon Bedrock (Generative AI) for deep content personalization. The system ensures user personal information security through Amazon Cognito. 
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+### 2. Problem Statement  
+*Current Problem*  
+Job seekers currently spend too much time manually editing CVs for each application position. Writing cover letters is often stereotypical, lacking highlights. Additionally, providing candidates with an environment to practice professional knowledge and analyze industry insights regarding their own career as quickly as possible.  
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+*Solution*  
+The platform uses a comprehensive AWS Serverless architecture to solve the above problems:
+* Amazon S3 & CloudFront: Store and distribute the web interface (SPA) at high speed.
+* Amazon Cognito: Manage identity and authenticate users securely.
+* Amazon API Gateway & AWS Lambda (Java Spring Cloud Function): Handle business logic according to Microservices architecture (User, Resume, Cover Letter, Interview).
+* Amazon DynamoDB: Store profile data, assessment tests, and industry information with low latency.
+* Amazon Bedrock: The heart of the system, providing the ability to upgrade CVs, draft Cover Letters, and generate interview questions according to real-world contexts.
 
-### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+The platform focuses deeply on the "AI Personalization" feature; users not only store CVs but are also supported by AI. Key features include: CV upgrading, AI-based cover letter writing based on JD, taking knowledge review quizzes, industry trend reports.  
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+*Benefits and Return on Investment (ROI)*  
+Reduce a lot of time writing cover letters and editing CVs. Leverage AWS Free Tier for Lambda, DynamoDB, and Cognito; costs mainly come from Bedrock API calls. Estimated operating cost is about 3-5 USD/month for personal use or small scale (under 1000 AI requests/month). The biggest value lies not in direct cash but in shortening cover letter writing and CV editing. No initial hardware costs. 
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+### 3. Solution Architecture  
+The platform applies a fully AWS Serverless architecture to optimize scalability and maintenance costs. The user interface is distributed globally through Amazon CloudFront and S3. The backend system uses Microservices architecture with AWS Lambda (Java Spring Cloud Function) to handle business logic and Amazon Bedrock to integrate artificial intelligence. Profile and assessment data is centrally managed by Amazon DynamoDB, ensuring high performance and security.  
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+![AI Career Coach Architecture](/static/images/2-Proposal/AI_Career_Coach_Architecture.png)
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+*AWS Services Used*
+- *Amazon CloudFront & S3*: Store and distribute Web interface (Next.js) with low latency.
+- *Amazon Cognito*: Manage identity, sign-up/sign-in, and secure user authentication.
+- *Amazon API Gateway*: REST API gateway managing traffic and routing requests to the correct Lambda Service.
+- *AWS Lambda*: Handle business logic (4 services: User, Resume, Cover Letter, Interview) on Java Spring environment.
+- *Amazon DynamoDB*: NoSQL database storing user information, resumes, and assessment history (5 tables).
+- *Amazon Bedrock*: Provide foundation models (Claude 3 Haiku/Sonnet) to analyze and generate content. 
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
-
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
-
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+*Component Design*
+- *User Interface (Frontend)*: Next.js Single Page Application (SPA) interacting with backend through RESTful APIs.
+- *Access Management*: Amazon Cognito (User Pool) authenticates users and issues JWT Tokens for API requests.
+- *Central Processing*: AWS Lambda executes Spring Cloud Function functions, connecting with Bedrock to handle intelligent tasks (creating quizzes, fixing CVs).
+- *Data Layer*: DynamoDB uses Multi-table design to ensure clear data separation and fast retrieval.
+- *Artificial Intelligence*: Amazon Bedrock receives context from Lambda, performs inference, and returns consultation results or text content. 
 
 ### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+*Implementation Phases*
+The project is divided into 2 major phases, focusing on designing optimal Serverless architecture for Java and integrating Generative AI:
+1. *Research, Design, and Feasibility Assessment*: Design AWS Serverless data flow diagrams, define Microservices separation strategy with Spring Cloud Function. Select suitable AI model (Claude 3 Haiku) based on accuracy and speed benchmarks. Use AWS Pricing Calculator to estimate costs for Lambda (Java runtime), DynamoDB (Read/Write capacity), and most importantly, Amazon Bedrock Token costs. Set up expected budget (AWS Budget) to ensure the project stays within Free Tier limits or lowest cost. (Month 2)
+2. *Development, Optimization, and Operation*: Build Lambda functions using Java (Spring Boot 3), configure DynamoDB Multi-table, and write Prompt Engineering for Bedrock to optimize output results for CV/Interview. Integrate Frontend (Next.js) with API Gateway and Cognito, perform Integration Test for the whole system before Go-live. (Month 3)
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+*Technical Requirements*
+- *Backend Services (Java Serverless):* Proficient in Java 17/21 and Spring Cloud Function to write code according to the functional model. Deep understanding of AWS Lambda SnapStart mechanism to optimize Java application startup time (reducing latency from seconds to milliseconds).
+- *Generative AI & Data:* Advanced Prompt Engineering skills to control Claude 3 model on Amazon Bedrock to return accurate JSON format. Effective DynamoDB schema design (Partition Key/Sort Key) for assessment history and user profile queries.
+- *Infrastructure & Security:* Use Amazon Cognito to manage User Pool and JWT authentication. Configure Amazon API Gateway to map requests and handle CORS for Frontend. Deploy Frontend (Next.js) to Amazon S3 and distribute via CloudFront.
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+### 5. Roadmap & Milestones   
+- *Internship (Month 1–3)*:  
+    - Month 1: Learn AWS and upgrade hardware.  
+    - Month 2: Design and adjust architecture.  
+    - Month 3: Deploy, test, put into use.  
+- *Post-deployment*: Research further to expand more functions.  
 
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+### 6. Budget Estimation  
+Costs can be viewed on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=16a1acd5f6d2fe1cf2414547f30fdfb0504f8c0d)  
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
-
-Total: $0.7/month, $8.40/12 months
-
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+*Infrastructure Costs (Region: Asia Pacific - Singapore)*
+- Amazon Bedrock: 2.70 USD/month (AI model, processing ~1,000 token input/output per request).
+- Amazon CloudFront: 0.85 USD/month (Data transfer to internet 10 GB).
+- Amazon DynamoDB: 0.28 USD/month (Storage 1 GB, Standard mode).
+- AWS Lambda: 0.13 USD/month (4,000 requests, 512 MB temporary memory).
+- Amazon S3: 0.05 USD/month (Storage 1 GB, 4,000 PUT/GET requests).
+*Total*: 4.01 USD/month, equivalent to 48.12 USD/12 months.
 
 ### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+*Risk Matrix*
+- AI Hallucination: High Impact, Medium Probability. (AI gives misleading advice or fabricates information in CV).
+- Cost Overrun: Medium Impact, Low Probability. (Due to Bedrock token fees if request volume increases suddenly).
+- System Latency (Cold Start): Medium Impact, Low Probability. (Due to the nature of Java Lambda functions when starting up).
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+*Mitigation Strategies*
+- Accurate AI: Optimize Prompt Engineering with specific context, set low `Temperature` parameters (0.1 - 0.2) to reduce randomness. Add disclaimer warnings for users.
+- Cost Control: Set up AWS Budgets to alert when costs reach 80% of the allowed threshold.
+- Performance: Enable AWS Lambda SnapStart feature to reduce Java startup time from seconds to milliseconds.
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+*Contingency Plan*
+- AI Service Incident: Design the system to "fail gracefully" (friendly error notification) or return available templates if Amazon Bedrock is interrupted.
+- Data Recovery: Enable DynamoDB Point-in-Time Recovery (PITR) feature to restore user data in case of accidental deletion or application errors.
 
 ### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+*Technical Improvements:* Automate 90% of the application profile preparation process (from editing CVs to writing cover letters), completely replacing time-consuming manual drafting. The system achieves low latency (milliseconds) thanks to Java SnapStart optimization, capable of handling high loads without infrastructure intervention.
+*Long-term Value:* Successfully build a sample architecture framework for Java Serverless applications combined with GenAI on AWS, reusable for enterprise projects. Create a real-world environment to test and refine complex Prompt Engineering techniques, serving the specialized development direction of AI Engineer.

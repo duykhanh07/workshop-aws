@@ -5,53 +5,26 @@ weight: 1
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
-
 ### Week 6 Objectives:
-
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand the process of building AMI, Launch Template and deploying WordPress in a scalable environment.
+* Use Lambda Function to optimize costs, automatically start/stop EC2 Instances according to demand.
+* Get familiar with Grafana to monitor data and systems.
+* Know how to manage resources using Tags, Resource Groups and apply access control using IAM.
+* Learn about AWS Systems Manager to run remote commands and manage patches (Patch Manager).
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --------- | ------------- | ---------------- | -------------- |
+| 2 | - Practice: deploy Wordpress application with Auto Scaling Group to ensure the application's scalability according to visitor demand <br> &emsp; + Prepare VPC and subnet, create Security Group for EC2, Database and initialize EC2, Database <br> &emsp; + Install wordpress on EC2 <br> &emsp; + Perform Autoscaling creation for wordpress Instance <br> &emsp;&emsp; + Initialize AMI from Webserver Instance <br> &emsp;&emsp; + Initialize Launch Template <br> &emsp;&emsp; + Initialize Target Group <br> &emsp;&emsp; + Initialize Load Balancer <br> &emsp;&emsp; + Initialize Auto Scaling Group <br> &emsp; + Backup and restore database <br> &emsp; + Initialize Cloudfront for Web Server | 13/10/2025 | 13/10/2025 | [cloudjourney.awsstudygroup.com](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - Learn about Lambda function <br> - Practice: use Lambda function to optimize costs for your system on AWS environment <br> &emsp; + Create VPC, Security Group, EC2 <br> &emsp; + Incoming Web-hooks slack <br> &emsp; + Create tag for instance <br> &emsp; + Create Role for Lambda <br> &emsp; + Create Lambda Function performing Stop instances function <br> &emsp; + Create Lambda Function performing Start instances function <br> &emsp; + Check results | 14/10/2025 | 14/10/2025 | [cloudjourney.awsstudygroup.com](https://cloudjourney.awsstudygroup.com/) |
+| 4 | - Learn about Grafana <br> - Practice: <br> &emsp; + Create VPC and Subnet, Security Group, Linux EC2 Instance <br> &emsp; + Create IAM User, IAM Role, assign IAM Role to EC2 Instance <br> &emsp; + Install Grafana <br> &emsp; + Perform EC2 connection using MobaXterm <br> &emsp; + Monitor with Grafana | 15/10/2025 | 15/10/2025 | [cloudjourney.awsstudygroup.com](https://cloudjourney.awsstudygroup.com/) and [grafana.com/grafana](https://grafana.com/grafana) |
+| 5 | - Learn about resource management using Tag and Resource Groups <br> - Practice: <br> &emsp; + Create EC2 Instance with tag <br> &emsp; + Add or remove tags on individual resources and on resource groups <br> &emsp; + Filter resources by tag <br> &emsp; + Create a Resource Group <br> - Practice: manage access to EC2 Resource Tag service with AWS IAM <br> &emsp; + Create IAM User <br> &emsp; + Create IAM Policy <br> &emsp; + Create IAM Role <br> &emsp; + Switch Role <br> &emsp; + Check IAM Policy <br> &emsp;&emsp; + Proceed to access EC2 console in AWS Region - Tokyo <br> &emsp;&emsp; + Proceed to access EC2 console in AWS Region - North Virginia <br> &emsp;&emsp; + Proceed to create EC2 instance when there are no and there are Tags satisfying conditions <br> &emsp;&emsp; + Edit Resource Tag on EC2 Instance <br> &emsp;&emsp; + Check policy | 16/10/2025 | 16/10/2025 | [cloudjourney.awsstudygroup.com](https://cloudjourney.awsstudygroup.com/) |
+| 6 | - Learn about AWS Systems Manager <br> - Practice: manage Patch and run commands on multiple servers with AWS System Manager <br> &emsp; + Create VPC, Subnet, EC2 Instance, IAM Role and assign IAM Role <br> &emsp; + Set up Patch Manager <br> &emsp; + Run Command | 17/10/2025 | 17/10/2025 | [cloudjourney.awsstudygroup.com](https://cloudjourney.awsstudygroup.com/) |
 
 ### Week 6 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Deploy WordPress according to scalable model including: create VPC/Subnet/SG, install Webserver, create AMI, Launch Template, Target Group, Load Balancer and Auto Scaling Group; simultaneously backup – restore database and configure CloudFront.
+* Build cost optimization automation solution using Lambda, including create Role, assign tag, create Stop/Start EC2 Lambda Function and check activation via Slack Webhook.
+* Deploy Grafana to monitor the system, including create Linux EC2, IAM User/Role, install Grafana and connect to track data.
+* Manage resources using Tag and Resource Groups, simultaneously apply IAM to control access by Tag and test in multiple Regions.
+* Use AWS Systems Manager to manage patches using Patch Manager and run remote commands with Run Command.

@@ -6,33 +6,27 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
-
-**On this page**, you will need to introduce your worklog. **How** did you complete it? How many weeks did you take to complete the program? **What** did you do in those weeks?
-
 Typically, and as a standard, a worklog is carried out over about 3 months (throughout the internship period) with weekly contents as follows:
 
 **Week 1:** [Getting familiar with AWS and basic AWS services](1.1-week1/)
 
-**Week 2:** [Doing task A...](1.2-week2/)
+**Week 2:** [Researching and practicing the deployment of AWS core infrastructure services, including VPC network design, EC2 server management, and Site-to-Site VPN setup](1.2-week2/)
 
-**Week 3:** [Doing task B...](1.3-week3/)
+**Week 3:** [Practicing advanced VPN configuration and in-depth EC2 management, while deploying real-world applications on multiple platforms and applying IAM policies to secure resources](1.3-week3/)
 
-**Week 4:** [Doing task C...](1.4-week4/)
+**Week 4:** [Mastering storage and content delivery services (S3, CloudFront), relational database management (RDS), practicing within the Cloud9 environment, and rapid application deployment with Amazon Lightsail](1.4-week4/)
 
-**Week 5:** [Doing task D...](1.5-week5/)
+**Week 5:** [Building scalable and load-balanced systems (Auto Scaling, ELB), deploying web applications connected to RDS, establishing in-depth monitoring via CloudWatch, and managing advanced routing with Route 53](1.5-week5/)
 
-**Week 6:** [Doing task E...](1.6-week6/)
+**Week 6:** [Optimizing operations and costs through auto-scaling WordPress deployment, applying Lambda for resource management, monitoring systems with Grafana, and practicing advanced administration using Tags, IAM, and Systems Manager](1.6-week6/)
 
-**Week 7:** [Doing task G...](1.7-week7/)
+**Week 7:** [Managing secure connections via Systems Manager, automating infrastructure with advanced CloudFormation, and setting up a centralized identity system (IAM Identity Center) for the entire AWS Organization](1.7-week7/)
 
-**Week 8:** [Doing task H...](1.8-week8/)
+**Week 8:** [System security and governance through advanced identity management (IAM Identity Center, Permission Boundary), deploying application protection layers (Security Hub, WAF), and establishing encryption, log monitoring, and automated backup mechanisms (KMS, CloudTrail, Athena, AWS Backup)](1.8-week8/)
 
-**Week 9:** [Doing task I...](1.9-week9/)
+**Week 9:** [Multi-VPC networking (Peering, Transit Gateway), deploying Container applications on ECS, building comprehensive automated CI/CD pipelines (AWS Code Suite, GitLab/GitHub), and setting up Hybrid Cloud storage solutions](1.9-week9/)
 
-**Week 10:** [Doing task L...](1.10-week10/)
+**Week 10:** [Mastering Amazon DynamoDB from advanced design patterns to Serverless and AI integration, alongside practicing system cost optimization and automated deployment of the TravelBuddy application on Elastic Beanstalk](1.10-week10/)
 
 **Week 11:** [Doing task M...](1.11-week11/)
 

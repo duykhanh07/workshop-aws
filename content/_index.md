@@ -11,7 +11,7 @@ chapter: false
 ### Student Information:
 &emsp; **Full Name:** Le Duy Khanh
 
-&emsp; **Phone Number:** 0989888999 
+&emsp; **Phone Number:** 0389430144
 
 &emsp; **Email:** ldk11072003@gmail.com
 
@@ -19,7 +19,7 @@ chapter: false
 
 &emsp; **Major:** Information Technology
 
-&emsp; **Class:** AWS082025
+&emsp; **Class:** DCT1216
 
 &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
 
@@ -27,7 +27,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 08/09/2025 to 30/11/2025
 
-![Your profile picture](/images/avatar.png)
+![Your profile picture](/images/avatars.png)
 
 ### Report Content
 
